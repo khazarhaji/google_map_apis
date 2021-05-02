@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Get Distance</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-dark justify-content-center mb-5 p-3">
+        <a class="navbar-brand text-light text-lg" style="cursor: pointer;">Get Distance</a>
+    </nav>
+    <div class="container">
+        <form method="POST" id="distance-form" onsubmit="getDistance(event)">
+            <select onchange="getAPI(event)" class="custom-select custom-select-lg mb-3">
+                <option selected disabled>Choose API</option>
+                <option value="geocoding">Geocoding</option>
+                <option value="distance">Distance Matrix</option>
+            </select>
+            <div class="form-group">
+              <label for="FROM">FROM</label>
+              <input type="text" name="from" class="form-control p-4" id="FROM" aria-describedby="textHelp" placeholder="Enter from address">
+            </div>
+            <div class="form-group">
+              <label for="TO">TO</label>
+              <input type="text" name="to" class="form-control p-4" id="TO" placeholder="Enter to address">
+            </div>
+            <h2 id="msg" style="text-align: center; padding:2rem"></h2>
+            <button type="submit" id="myInput" class="btn btn-block btn-primary p-3">Get Distance</button>
+          </form>
+    </div>
+      <script>
+          var api;
+          const getAPI = function(event){
+            api = event.target.value
+          }
+
+          const getDistance = function(event){
+            event.preventDefault();
+            const from = document.getElementById("FROM");
+            const to = document.getElementById("TO");
+            const req = new XMLHttpRequest();
+            req.onload = function(){
+                if (this.response && this.status == 200){
+                    let resp;
+                    try {
+                        resp = JSON.parse(this.response)
+                    } catch (error) {
+                        resp = null;
+                    }
+                    if (resp != null){
+                        let msg = document.getElementById("msg")
+                        msg.innerText = resp.distance
+                    }
+                }
+            }
+            req.open('GET', `/api/${api}?from=${from.value}&to=${to.value}`);
+            req.send();
+          }
+      </script>
+</body>
+</html>
