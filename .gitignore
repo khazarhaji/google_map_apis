@@ -1,3 +1,19 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control system
+*.py[cod]
+local_settings.py
+prod_settings.py
+.idea
+__pycache__/
+venv/
+env/
+venv*/
+env*/
+virtualenv.bat
+.vscode/
+*.log
+log/
+logs/
+Thumbs.db
+*old
 *env
-*pycache*
 *sqlite3
