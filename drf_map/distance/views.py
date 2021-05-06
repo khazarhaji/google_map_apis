@@ -28,6 +28,10 @@ class GeocodingApiView(generics.GenericAPIView):
         else:
             return Response({"distance":""})
 
+
+# The Distance Matrix API is a service that provides travel distance and time
+# for a matrix of origins and destinations, based on the recommended route
+# between start and end points.
 class DistanceMatrixApiView(generics.GenericAPIView):
 
     def send_request(self, from_address, to_address):
