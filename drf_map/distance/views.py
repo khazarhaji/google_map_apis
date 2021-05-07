@@ -28,22 +28,40 @@ class GeocodingApiView(generics.GenericAPIView):
         else:
             return Response({"distance":""})
 
+
+# The Distance Matrix API is a service that provides travel distance and time
+# for a matrix of origins and destinations, based on the recommended route
+# between start and end points.
 class DistanceMatrixApiView(generics.GenericAPIView):
 
-    def calculate_distance(self, from_address, to_address):
+    def send_request(self, from_address, to_address):
         key = os.environ.get("api_key")
+
         url = f"https://maps.googleapis.com/maps/api/distancematrix/json?origins={from_address}&destinations={to_address}&travel_mode=bus&key={key}"
         response = requests.get(url)
 
         if response.status_code == 200:
-            return response.json()["rows"][0]["elements"][0]["distance"]["text"]
+            return response.json()
+
+    def calculate_distance(self, api_response):
+        distance = api_response["rows"][0]["elements"][0]["distance"]["text"]
+        return distance
+
+    def calculate_duration(self, api_response):
+        distance = api_response["rows"][0]["elements"][0]["duration"]["text"]
+        return distance
 
     def get(self, request):
         from_address = request.GET.get("from")
         to_address = request.GET.get("to")
         if from_address and to_address:
-            result = self.calculate_distance(from_address, to_address)
-            response = f"The distance between {from_address} and {to_address} is {result}"
+            api_response = self.send_request(from_address, to_address)
+
+            distance = self.calculate_distance(api_response)
+            duration = self.calculate_duration(api_response)
+
+            response = f"The distance between {from_address} and {to_address} is {distance}. It will take {duration} to reach there."
             return Response({"distance":response})
         else:
             return Response({"distance":""})
+        
