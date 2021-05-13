@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: SketchAPI 2021.4.25.11 <https://api.sketch.io/> -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketchjs="https://sketch.io/dtd/" sketchjs:metadata="eyJuYW1lIjoiRHJhd2luZyIsInN1cmZhY2UiOnsibWV0aG9kIjoiZmlsbCIsImJsZW5kIjoibm9ybWFsIiwiZW5hYmxlZCI6dHJ1ZSwib3BhY2l0eSI6MSwidHlwZSI6InBhdHRlcm4iLCJwYXR0ZXJuIjp7InR5cGUiOiJwYXR0ZXJuIiwicmVmbGVjdCI6Im5vLXJlZmxlY3QiLCJyZXBlYXQiOiJyZXBlYXQiLCJzbW9vdGhpbmciOmZhbHNlLCJzcmMiOiJ0cmFuc3BhcmVudExpZ2h0Iiwic3giOjEsInN5IjoxLCJ4MCI6MC41LCJ4MSI6MSwieTAiOjAuNSwieTEiOjF9fSwiY2xpcFBhdGgiOnsiZW5hYmxlZCI6dHJ1ZSwic3R5bGUiOnsic3Ryb2tlU3R5bGUiOiJibGFjayIsImxpbmVXaWR0aCI6MX19LCJkZXNjcmlwdGlvbiI6Ik1hZGUgd2l0aCBTa2V0Y2hwYWQiLCJtZXRhZGF0YSI6e30sImV4cG9ydERQSSI6NzIsImV4cG9ydEZvcm1hdCI6InBuZyIsImV4cG9ydFF1YWxpdHkiOjAuOTUsInVuaXRzIjoicHgiLCJ3aWR0aCI6MzY2LCJoZWlnaHQiOjM2NiwicGFnZXMiOlt7IndpZHRoIjozNjYsImhlaWdodCI6MzY2fV0sInV1aWQiOiJlMTBhMWRiNC0zYTQzLTRlZWEtYjZlMC0zYmYxZWIyYWNiMzQifQ==" width="366" height="366" viewBox="0 0 366 366" sketchjs:version="2021.4.25.11">
+<path sketchjs:tool="rectangle" style="fill: #074dff; mix-blend-mode: source-over; fill-opacity: 1; vector-effect: non-scaling-stroke;" d="M0 0 L366 0 366 366 0 366 z"/>
+<path sketchjs:tool="pencil" style="fill: none; stroke: #00ff12; mix-blend-mode: source-over; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 73;" d="M0 0 L0.01 0.01 " transform="matrix(1,0,0,1,305,58)"/>
+<path sketchjs:tool="pencil" style="fill: #074dff; stroke: #9123f3; mix-blend-mode: source-over; paint-order: stroke fill markers; fill-opacity: 1; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 31;" d="M0 0 L0.01 0.01 " transform="matrix(1.3332323538321722,0,0,1.3332323538321722,38.66495006131474,322.66495006131476)"/>
+<g sketchjs:tool="arrow" style="mix-blend-mode: source-over;" transform="matrix(0.714734155620204,-0.6993962301799131,0.6993962301799131,0.714734155620204,38.18430978934538,294.74789897456856)">
+	<g sketchjs:uid="1">
+		<g sketchjs:uid="2">
+			<g sketchjs:uid="3" style="paint-order: fill stroke markers;">
+				<path d="M 1.4999999898076553 20.5L 1.5000000101923447 17.5L 288.3689561036956 10.957912162366469L 283.6400001189107 1.5L 318.64 19L 283.6399998810893 36.5L 288.3689560579463 27.04208783908259L 1.4999999898076553 20.5ZZ" sketchjs:uid="4" style="fill: #000000; stroke: #000000; stroke-linecap: round; paint-order: stroke fill markers;"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

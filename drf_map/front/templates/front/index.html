@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <title>Get Distance</title>
+    <style>
+        .hide_checkbox{
+            display: none;
+        }
+
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-light bg-dark justify-content-center mb-5 p-3">
         <a class="navbar-brand text-light text-lg" style="cursor: pointer;">Get Distance</a>
     </nav>
     <div class="container">
+        <h1 style="text-align:center;" class="mb-4 mt-4">Select type</h1>
+        <div class="d-flex center justify-content-around align-items-center p-3">
+            <div class="flex-row p-3 border mb-5">
+                <input class="hide_checkbox" type="checkbox" name="left" id="">
+                <img onclick="change_color(event)" src="{% static 'front/images/left.svg' %}" alt="left">
+            </div>
+            <div class="flex-row p-3 border mb-5">
+                <input class="hide_checkbox" type="checkbox" name="right" id="">
+                <img onclick="change_color(event)" src="{% static 'front/images/right.svg' %}" alt="right">
+            </div>
+        </div>
+        
         <form method="POST" id="distance-form" onsubmit="getDistance(event)">
             <select onchange="getAPI(event)" class="custom-select custom-select-lg mb-3">
                 <option selected disabled>Choose API</option>
@@ -27,7 +50,7 @@
               <input autocomplete="off" type="text" name="to" class="form-control p-4" id="TO" placeholder="Enter to address">
             </div>
             <h2 id="msg" style="text-align: center; padding:2rem"></h2>
-            <button type="submit" id="myInput" class="btn btn-block btn-primary p-3">Get Distance</button>
+            <button type="submit" id="myInput" class="btn btn-block btn-primary p-3 mb-5">Get Distance</button>
           </form>
     </div>
       <script>
@@ -57,6 +80,40 @@
             }
             req.open('GET', `/api/${api}?from=${from.value}&to=${to.value}`);
             req.send();
+          }
+
+
+
+          const change_color = function(event){
+            let alt = event.target.attributes.alt.value;
+            
+            if (alt == "left"){
+                let c = document.getElementsByName("left")[0];
+                if (c.checked != true){
+                    c.checked = true;
+                    event.target.parentElement.style.background = "#10ff00";
+                    document.getElementsByName("right")[0].checked = false;
+                    document.querySelector('img[alt="right"]').parentElement.style.background = "initial"
+                }else{
+                    c.checked = false;
+                    event.target.parentElement.style.background = "initial";
+                }
+                    
+            }else{
+                let c = document.getElementsByName("right")[0];
+                if (c.checked != true){
+                    c.checked = true;
+                    event.target.parentElement.style.background = "#10ff00";
+                    document.getElementsByName("left")[0].checked = false;
+                    document.querySelector('img[alt="left"]').parentElement.style.background = "initial"
+                }else{
+                    c.checked = false;
+                    event.target.parentElement.style.background = "initial";
+                }
+
+
+
+            }
           }
       </script>
 </body>
