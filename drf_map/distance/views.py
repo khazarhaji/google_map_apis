@@ -34,34 +34,45 @@ class GeocodingApiView(generics.GenericAPIView):
 # between start and end points.
 class DistanceMatrixApiView(generics.GenericAPIView):
 
-    def send_request(self, from_address, to_address):
+    def send_request(self, from_address, to_address, mode):
         key = os.environ.get("api_key")
 
-        url = f"https://maps.googleapis.com/maps/api/distancematrix/json?origins={from_address}&destinations={to_address}&travel_mode=bus&key={key}"
+        url = f"https://maps.googleapis.com/maps/api/distancematrix/json?origins={from_address}&destinations={to_address}&mode={mode}&key={key}"
         response = requests.get(url)
 
         if response.status_code == 200:
             return response.json()
 
     def calculate_distance(self, api_response):
-        distance = api_response["rows"][0]["elements"][0]["distance"]["text"]
-        return distance
+        if api_response["rows"][0]["elements"][0]["status"] == "OK":
+            distance = api_response["rows"][0]["elements"][0]["distance"]["text"]
+            return distance
+        else:
+            return None
 
     def calculate_duration(self, api_response):
-        distance = api_response["rows"][0]["elements"][0]["duration"]["text"]
-        return distance
+        if api_response["rows"][0]["elements"][0]["status"] == "OK":
+            distance = api_response["rows"][0]["elements"][0]["duration"]["text"]
+            return distance
+        else:
+            return None
 
     def get(self, request):
+        # mode = request.GET.get("mode")
+        mode = "driving"
         from_address = request.GET.get("from")
         to_address = request.GET.get("to")
         if from_address and to_address:
-            api_response = self.send_request(from_address, to_address)
-
+            api_response = self.send_request(from_address, to_address, mode)
+            print(api_response)
             distance = self.calculate_distance(api_response)
             duration = self.calculate_duration(api_response)
 
-            response = f"The distance between {from_address} and {to_address} is {distance}. It will take {duration} to reach there."
-            return Response({"distance":response})
+            if distance is not None and duration is not None:
+                response = f"The distance between {from_address} and {to_address} is {distance}. It will take {duration} to reach there."
+                return Response({"distance":response})
+            else:
+                return Response({"distance":"There are no result for {} mode".format(mode)})
         else:
             return Response({"distance":""})
         
